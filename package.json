@@ -1,0 +1,25 @@
+{
+  "name": "yum-o-food-store",
+  "version": "1.0.0",
+  "description": "Frontend pet project: a mini food e-commerce app built with HTML, CSS, and JavaScript. Uses APIs, localStorage, Parcel, and is deployed with Netlify.",
+  "main": "index.js",
+  "scripts": {
+    "start": "parcel src/index.html",
+    "build": "parcel build src/index.html"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Xhione/Yum-O-food-store.git"
+  },
+  "keywords": [],
+  "author": "Xhione",
+  "license": "ISC",
+  "type": "commonjs",
+  "bugs": {
+    "url": "https://github.com/Xhione/Yum-O-food-store/issues"
+  },
+  "homepage": "https://github.com/Xhione/Yum-O-food-store#readme",
+  "devDependencies": {
+    "parcel": "^2.16.4"
+  }
+}
