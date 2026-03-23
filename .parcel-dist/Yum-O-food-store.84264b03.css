@@ -1,0 +1,25 @@
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: Arial, sans-serif;
+}
+
+.product-img {
+  object-fit: cover;
+  border-radius: 10px;
+  width: 100%;
+  height: 200px;
+  display: block;
+}
+
+.product-card {
+  border: 1px solid #ccc;
+  border-radius: 12px;
+  width: 250px;
+  padding: 16px;
+}
+/*# sourceMappingURL=Yum-O-food-store.84264b03.css.map */
