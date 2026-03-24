@@ -1,11 +1,37 @@
 * {
-  box-sizing: border-box;
   margin: 0;
   padding: 0;
 }
 
 body {
   font-family: Arial, sans-serif;
+  font-size: 22px;
+  line-height: 1.5;
+}
+
+a {
+  color: #000;
+  text-decoration: none;
+}
+
+.btn {
+  color: #f0f8ff;
+  text-transform: uppercase;
+  cursor: pointer;
+  background-color: #000;
+  border: none;
+  border-radius: 10px;
+  font-size: 20px;
+}
+
+.btn:hover {
+  background-color: #7c7c7c;
+}
+
+.product-title {
+  text-align: center;
+  text-transform: uppercase;
+  background-color: #ccc;
 }
 
 .product-img {
@@ -17,9 +43,24 @@ body {
 }
 
 .product-card {
-  border: 1px solid #ccc;
+  border: 3px solid #ccc;
   border-radius: 12px;
   width: 250px;
   padding: 16px;
+  position: relative;
+}
+
+.product-sale {
+  color: #f0f8ff;
+  letter-spacing: 2px;
+  background-color: red;
+  border-radius: 5px;
+  position: absolute;
+  top: -5px;
+  right: -5px;
+}
+
+footer {
+  text-align: center;
 }
 /*# sourceMappingURL=Yum-O-food-store.84264b03.css.map */
