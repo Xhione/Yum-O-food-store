@@ -714,8 +714,91 @@ function hmrAccept(bundle /*: ParcelRequire */ , id /*: string */ ) {
 }
 
 },{}],"7dWZ8":[function(require,module,exports,__globalThis) {
+var _model = require("./model");
+var _productsView = require("./views/productsView");
 console.log("Working");
+const init = async function() {
+    await (0, _model.loadData)();
+    (0, _productsView.renderProducts)((0, _model.state).products);
+};
+init();
 
-},{}]},["l9UXf","7dWZ8"], "7dWZ8", "parcelRequirea967", {})
+},{"./model":"3QBkH","./views/productsView":"lsCkn"}],"3QBkH":[function(require,module,exports,__globalThis) {
+var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
+parcelHelpers.defineInteropFlag(exports);
+parcelHelpers.export(exports, "state", ()=>state);
+parcelHelpers.export(exports, "loadData", ()=>loadData);
+const state = {
+    products: []
+};
+const loadData = async function() {
+    const res = await fetch("https://dummyjson.com/products");
+    const data = await res.json();
+    state.products = data.products;
+    console.log(state.products);
+};
+
+},{"@parcel/transformer-js/src/esmodule-helpers.js":"jnFvT"}],"jnFvT":[function(require,module,exports,__globalThis) {
+exports.interopDefault = function(a) {
+    return a && a.__esModule ? a : {
+        default: a
+    };
+};
+exports.defineInteropFlag = function(a) {
+    Object.defineProperty(a, '__esModule', {
+        value: true
+    });
+};
+exports.exportAll = function(source, dest) {
+    Object.keys(source).forEach(function(key) {
+        if (key === 'default' || key === '__esModule' || Object.prototype.hasOwnProperty.call(dest, key)) return;
+        Object.defineProperty(dest, key, {
+            enumerable: true,
+            get: function() {
+                return source[key];
+            }
+        });
+    });
+    return dest;
+};
+exports.export = function(dest, destName, get) {
+    Object.defineProperty(dest, destName, {
+        enumerable: true,
+        get: get
+    });
+};
+
+},{}],"lsCkn":[function(require,module,exports,__globalThis) {
+var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
+parcelHelpers.defineInteropFlag(exports);
+parcelHelpers.export(exports, "renderProducts", ()=>renderProducts);
+const renderProducts = function(products) {
+    const productContainer = document.querySelector(".products");
+    const html = products.map((prod)=>{
+        return `<article class="product-card">
+                <img
+                  src=" ${prod?.thumbnail}"
+                  alt="Product image"
+                  class="product-img"
+                />
+                <div class="product-content">
+                  <p class="product-sale">SALE</p>
+                  <h3 class="product-name"> ${prod?.title}</h3>
+                  <p class="product-category"> ${prod?.category}</p>
+                  <p class="product-description">
+                   ${prod?.description}
+                  </p>
+
+                  <div class="product-footer">
+                    <button class="btn product-btn">Add to cart</button>
+                    <p class="product-price">${+prod?.price}</p>
+                  </div>
+                </div>
+              </article>`;
+    }).join("");
+    productContainer.insertAdjacentHTML("beforeend", html);
+};
+
+},{"@parcel/transformer-js/src/esmodule-helpers.js":"jnFvT"}]},["l9UXf","7dWZ8"], "7dWZ8", "parcelRequirea967", {})
 
 //# sourceMappingURL=Yum-O-food-store.f0af4f8b.js.map

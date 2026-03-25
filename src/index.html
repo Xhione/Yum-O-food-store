@@ -8,48 +8,36 @@
     <script type="module" src="./js/controller.js"></script>
   </head>
   <body>
-    <header>
-      <nav>
-        <a href="#">Home</a>
-        <a href="#">Cart</a>
-        <a href="#">About us</a>
-        <a href="#">Account</a>
-      </nav>
-    </header>
-    <main>
-      <section class="search-section">
-        <form class="search-form">
-          <input
-            type=" text"
-            class="search-input"
-            placeholder="Search for food.."
-          />
-          <button class="btn search-btn">Search</button>
-        </form>
-      </section>
-      <section class="catalog-section">
-        <aside class="filters"></aside>
-        <div class="products">
-          <h2 class="product-title">Products</h2>
-          <article class="product-card">
-            <img
-              src="./img/loading.png"
-              alt="Product image"
-              class="product-img"
+    <div class="container">
+      <header>
+        <nav class="nav-bar">
+          <a href="#">Home</a>
+          <a href="#">Cart</a>
+          <a href="#">About us</a>
+          <a href="#">Account</a>
+        </nav>
+      </header>
+      <main>
+        <section class="search-section">
+          <form class="search-form">
+            <input
+              type=" text"
+              class="search-input"
+              placeholder="Search for food.."
             />
-            <div class="product-content">
-              <h3 class="product-name">Cheese Burger</h3>
-              <p class="product-description">
-                Tasty burger with cheddar cheese.
-              </p>
-              <p class="product-price">$12.60</p>
-              <p class="product-sale">SALE</p>
-              <button class="btn product-btn">Add to cart</button>
-            </div>
-          </article>
-        </div>
-      </section>
-    </main>
-    <footer>Copyright &copy; 2026 by Hryban Olexandr</footer>
+            <button class="btn search-btn">Search</button>
+          </form>
+        </section>
+
+        <section class="catalog-section">
+          <aside class="filters">filters</aside>
+          <div class="catalog-content">
+            <h2 class="product-title">Products</h2>
+            <div class="products"></div>
+          </div>
+        </section>
+      </main>
+      <footer>Copyright &copy; 2026 by Hryban Olexandr</footer>
+    </div>
   </body>
 </html>
