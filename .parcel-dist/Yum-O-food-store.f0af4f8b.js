@@ -772,8 +772,8 @@ exports.export = function(dest, destName, get) {
 var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
 parcelHelpers.defineInteropFlag(exports);
 parcelHelpers.export(exports, "renderProducts", ()=>renderProducts);
+const productContainer = document.querySelector(".products");
 const renderProducts = function(products) {
-    const productContainer = document.querySelector(".products");
     const html = products.map((prod)=>{
         return `<article class="product-card">
                 <img
@@ -796,7 +796,11 @@ const renderProducts = function(products) {
                 </div>
               </article>`;
     }).join("");
+    clear();
     productContainer.insertAdjacentHTML("beforeend", html);
+};
+const clear = function() {
+    productContainer.innerHTML = "";
 };
 
 },{"@parcel/transformer-js/src/esmodule-helpers.js":"jnFvT"}]},["l9UXf","7dWZ8"], "7dWZ8", "parcelRequirea967", {})

@@ -1,5 +1,5 @@
+const productContainer = document.querySelector(".products");
 export const renderProducts = function (products) {
-  const productContainer = document.querySelector(".products");
   const html = products
     .map((prod) => {
       return `<article class="product-card">
@@ -24,5 +24,10 @@ export const renderProducts = function (products) {
               </article>`;
     })
     .join("");
+  clear();
   productContainer.insertAdjacentHTML("beforeend", html);
+};
+
+const clear = function () {
+  productContainer.innerHTML = "";
 };
