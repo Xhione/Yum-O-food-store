@@ -714,67 +714,23 @@ function hmrAccept(bundle /*: ParcelRequire */ , id /*: string */ ) {
 }
 
 },{}],"7dWZ8":[function(require,module,exports,__globalThis) {
-var _model = require("./model");
+var _modelJs = require("./model.js");
 var _productsView = require("./views/productsView");
 var _filterCategoriesView = require("./views/filterCategoriesView");
 console.log("Working");
 const init = async function() {
-    await (0, _model.loadData)();
-    (0, _productsView.renderProducts)((0, _model.state).products);
-    (0, _filterCategoriesView.renderCategories)((0, _model.state).categories);
+    await _modelJs.loadData();
+    (0, _productsView.renderProducts)(_modelJs.state.products);
+    (0, _filterCategoriesView.renderCategories)(_modelJs.state.categories);
+    (0, _filterCategoriesView.addHandlerCategoryChange)(categorySelect);
 };
+function categorySelect(category) {
+    const filteredProducts = _modelJs.filterByCategory(category);
+    (0, _productsView.renderProducts)(filteredProducts);
+}
 init();
 
-},{"./model":"3QBkH","./views/productsView":"lsCkn","./views/filterCategoriesView":"dg2Wi"}],"3QBkH":[function(require,module,exports,__globalThis) {
-var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
-parcelHelpers.defineInteropFlag(exports);
-parcelHelpers.export(exports, "state", ()=>state);
-parcelHelpers.export(exports, "loadData", ()=>loadData);
-const state = {
-    products: []
-};
-const loadData = async function() {
-    const res = await fetch("https://dummyjson.com/products");
-    const data = await res.json();
-    state.products = data.products;
-    state.categories = [
-        ...new Set(data.products.map((product)=>product.category))
-    ];
-    console.log(state.products);
-    console.log(state.categories);
-};
-
-},{"@parcel/transformer-js/src/esmodule-helpers.js":"jnFvT"}],"jnFvT":[function(require,module,exports,__globalThis) {
-exports.interopDefault = function(a) {
-    return a && a.__esModule ? a : {
-        default: a
-    };
-};
-exports.defineInteropFlag = function(a) {
-    Object.defineProperty(a, '__esModule', {
-        value: true
-    });
-};
-exports.exportAll = function(source, dest) {
-    Object.keys(source).forEach(function(key) {
-        if (key === 'default' || key === '__esModule' || Object.prototype.hasOwnProperty.call(dest, key)) return;
-        Object.defineProperty(dest, key, {
-            enumerable: true,
-            get: function() {
-                return source[key];
-            }
-        });
-    });
-    return dest;
-};
-exports.export = function(dest, destName, get) {
-    Object.defineProperty(dest, destName, {
-        enumerable: true,
-        get: get
-    });
-};
-
-},{}],"lsCkn":[function(require,module,exports,__globalThis) {
+},{"./views/productsView":"lsCkn","./views/filterCategoriesView":"dg2Wi","./model.js":"3QBkH"}],"lsCkn":[function(require,module,exports,__globalThis) {
 var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
 parcelHelpers.defineInteropFlag(exports);
 parcelHelpers.export(exports, "renderProducts", ()=>renderProducts);
@@ -809,16 +765,81 @@ const clear = function() {
     productContainer.innerHTML = "";
 };
 
-},{"@parcel/transformer-js/src/esmodule-helpers.js":"jnFvT"}],"dg2Wi":[function(require,module,exports,__globalThis) {
+},{"@parcel/transformer-js/src/esmodule-helpers.js":"jnFvT"}],"jnFvT":[function(require,module,exports,__globalThis) {
+exports.interopDefault = function(a) {
+    return a && a.__esModule ? a : {
+        default: a
+    };
+};
+exports.defineInteropFlag = function(a) {
+    Object.defineProperty(a, '__esModule', {
+        value: true
+    });
+};
+exports.exportAll = function(source, dest) {
+    Object.keys(source).forEach(function(key) {
+        if (key === 'default' || key === '__esModule' || Object.prototype.hasOwnProperty.call(dest, key)) return;
+        Object.defineProperty(dest, key, {
+            enumerable: true,
+            get: function() {
+                return source[key];
+            }
+        });
+    });
+    return dest;
+};
+exports.export = function(dest, destName, get) {
+    Object.defineProperty(dest, destName, {
+        enumerable: true,
+        get: get
+    });
+};
+
+},{}],"dg2Wi":[function(require,module,exports,__globalThis) {
 var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
 parcelHelpers.defineInteropFlag(exports);
 parcelHelpers.export(exports, "renderCategories", ()=>renderCategories);
+parcelHelpers.export(exports, "addHandlerCategoryChange", ()=>addHandlerCategoryChange);
 function renderCategories(categories) {
     const html = categories.map((category)=>{
         return `<option value="${category}">${category}</option>`;
     }).join("");
     const selectCategory = document.querySelector(".category");
     selectCategory.insertAdjacentHTML("beforeend", html);
+}
+function addHandlerCategoryChange(handler) {
+    const selectCategory = document.querySelector(".category");
+    selectCategory.addEventListener("change", function() {
+        handler(this.value);
+    // function categorySelect(category) {
+    //   const filteredProducts = model.filterByCategory(category);
+    //   renderProducts(filteredProducts);
+    // }
+    });
+}
+
+},{"@parcel/transformer-js/src/esmodule-helpers.js":"jnFvT"}],"3QBkH":[function(require,module,exports,__globalThis) {
+var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
+parcelHelpers.defineInteropFlag(exports);
+parcelHelpers.export(exports, "state", ()=>state);
+parcelHelpers.export(exports, "loadData", ()=>loadData);
+parcelHelpers.export(exports, "filterByCategory", ()=>filterByCategory);
+const state = {
+    products: [],
+    categories: []
+};
+const loadData = async function() {
+    const res = await fetch("https://dummyjson.com/products");
+    const data = await res.json();
+    state.products = data.products;
+    state.categories = [
+        ...new Set(data.products.map((product)=>product.category))
+    ];
+    console.log(state.products);
+    console.log(state.categories);
+};
+function filterByCategory(category) {
+    return category === "all" ? state.products : state.products.filter((option)=>option.category == category);
 }
 
 },{"@parcel/transformer-js/src/esmodule-helpers.js":"jnFvT"}]},["l9UXf","7dWZ8"], "7dWZ8", "parcelRequirea967", {})

@@ -1,5 +1,6 @@
 export const state = {
   products: [],
+  categories: [],
 };
 
 export const loadData = async function () {
@@ -15,3 +16,9 @@ export const loadData = async function () {
   console.log(state.products);
   console.log(state.categories);
 };
+
+export function filterByCategory(category) {
+  return category === "all"
+    ? state.products
+    : state.products.filter((option) => option.category == category);
+}
